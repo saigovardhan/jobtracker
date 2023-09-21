@@ -1,30 +1,28 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [toggleTheme, setToggleTheme] = React.useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "corporate"
+  );
 
-  const [toggleTheme, setToggleTheme] = React.useState(localStorage.getItem("theme")?localStorage.getItem("theme") :"light");
-
-
-
-  useEffect(()=>{
-    localStorage.setItem("theme", toggleTheme)
+  useEffect(() => {
+    localStorage.setItem("theme", toggleTheme);
     const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme)
-  }, [toggleTheme])
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [toggleTheme]);
 
-
-  function handleToggle(e){
-    if (e.target.checked){
-      setToggleTheme("dark")
-    }
-    else{
-      setToggleTheme("light")
+  function handleToggle(e) {
+    if (e.target.checked) {
+      setToggleTheme("business");
+    } else {
+      setToggleTheme("corporate");
     }
   }
 
   return (
-    <div className="navbar bg-base-300">
-      <div className="navbar-start">
+    <div className="navbar sticky top-0 z-10 bg-base-100 ">
+      <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <svg
@@ -47,24 +45,22 @@ function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Homepage</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a>Portfolio</a>
+              <Link to="/About">About</Link>
             </li>
-            <li>
-              <a>About</a>
-            </li>
+          
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">Job Tracker</Link>
       </div>
       <div className="navbar-end">
         <label className="swap swap-rotate btn btn-ghost btn-circle">
           {/* this hidden checkbox controls the state */}
-          <input type="checkbox" onChange={(e)=>handleToggle(e)}/>
+          <input type="checkbox" onChange={(e) => handleToggle(e)} />
 
           {/* sun icon */}
           <svg
@@ -116,7 +112,7 @@ function Navbar() {
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
+            <span className="badge badge-xs badge-primary indicator-item "></span>
           </div>
         </button>
       </div>

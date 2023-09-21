@@ -1,13 +1,10 @@
-import { AiFillCheckCircle } from "react-icons/ai";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import {  RouterProvider  } from "react-router-dom";
+
+import { router } from "./Components/router";
+
 function App() {
   return (
-    <div className="flex flex-col h-screen justify-between">
-      <Navbar />
-      <h1>hello world</h1>
-      <Footer />
-    </div>
+        <RouterProvider router = {router}/>
   );
 }
 
